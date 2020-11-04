@@ -1,0 +1,4 @@
+Using Timer0 and Timer1 interrupts, write a program in which: 
+(a) PORTA counts up every time Timer1 overflows. It overflows once per second. 
+(b) A pulse is fed into Timer0 where Timer0 is used as counter and counts up. 
+Whenever the counter reaches 200, it will toggle the pin PORTB.6. 

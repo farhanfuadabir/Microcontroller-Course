@@ -1,0 +1,16 @@
+
+
+
+Upload using USBisp
+C:\arduino-1.5.4\hardware\tools\avr\bin\avrdude.exe
+-CC:\arduino-1.5.4\hardware/tools/avr/etc/avrdude.conf -v -v -patmega8 -cusbasp -u -D -Uflash:w:"$(ProjectDir)Debug\$(TargetName).hex"
+-C"C:\arduino-1.5.4\hardware/tools/avr/etc/avrdude.conf" -v -v -patmega8 -cusbasp -u -Uflash:w:"$(ProjectDir)Debug\$(TargetName).hex":i
+
+
+
+
+..........................For Installed Arduino............................
+
+
+C:\Program Files (x86)\Arduino\hardware\tools\avr\bin\avrdude.exe
+-C"C:\Program Files (x86)\Arduino\hardware/tools/avr/etc/avrdude.conf" -v -v -patmega8 -cusbasp -u -Uflash:w:"$(ProjectDir)Debug\$(TargetName).hex":i

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "LED Scrolling", "LED Scrolling\LED Scrolling.cproj", "{E7DA4617-F2B3-4CA5-A92F-AFF1C77C5A92}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7DA4617-F2B3-4CA5-A92F-AFF1C77C5A92}.Debug|AVR.ActiveCfg = Debug|AVR
+		{E7DA4617-F2B3-4CA5-A92F-AFF1C77C5A92}.Debug|AVR.Build.0 = Debug|AVR
+		{E7DA4617-F2B3-4CA5-A92F-AFF1C77C5A92}.Release|AVR.ActiveCfg = Release|AVR
+		{E7DA4617-F2B3-4CA5-A92F-AFF1C77C5A92}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

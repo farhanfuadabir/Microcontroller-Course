@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Single_pin_control", "Single_pin_control\Single_pin_control.cproj", "{486C2940-6F86-466E-9A2D-EB8BF606CCEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{486C2940-6F86-466E-9A2D-EB8BF606CCEB}.Debug|AVR.ActiveCfg = Debug|AVR
+		{486C2940-6F86-466E-9A2D-EB8BF606CCEB}.Debug|AVR.Build.0 = Debug|AVR
+		{486C2940-6F86-466E-9A2D-EB8BF606CCEB}.Release|AVR.ActiveCfg = Release|AVR
+		{486C2940-6F86-466E-9A2D-EB8BF606CCEB}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

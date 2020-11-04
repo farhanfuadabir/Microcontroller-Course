@@ -1,0 +1,2 @@
+INT0 pin is connected to a switch that is normally high. 
+Write a program that toggles PORTC.3 only once. whenever INT0 pin goes low. 

@@ -1,0 +1,2 @@
+Using Timer1, write a program that toggles pin PORTB.5 every second, while at the 
+same time transferring data from PORTC to PORTD. Assume XTAL = 8 MHz.

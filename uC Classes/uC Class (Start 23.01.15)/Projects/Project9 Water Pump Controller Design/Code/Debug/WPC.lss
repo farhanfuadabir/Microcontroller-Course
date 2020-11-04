@@ -1,0 +1,303 @@
+
+WPC.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000150  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000002  00800060  00800060  000001c4  2**0
+                  ALLOC
+  2 .comment      00000030  00000000  00000000  000001c4  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000048  00000000  00000000  000001f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   0000028a  00000000  00000000  0000023c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 0000019a  00000000  00000000  000004c6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000256  00000000  00000000  00000660  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000058  00000000  00000000  000008b8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000001f5  00000000  00000000  00000910  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000006c  00000000  00000000  00000b05  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000028  00000000  00000000  00000b71  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	21 c0       	rjmp	.+66     	; 0x46 <__bad_interrupt>
+   4:	20 c0       	rjmp	.+64     	; 0x46 <__bad_interrupt>
+   6:	1f c0       	rjmp	.+62     	; 0x46 <__bad_interrupt>
+   8:	1e c0       	rjmp	.+60     	; 0x46 <__bad_interrupt>
+   a:	1d c0       	rjmp	.+58     	; 0x46 <__bad_interrupt>
+   c:	1c c0       	rjmp	.+56     	; 0x46 <__bad_interrupt>
+   e:	1b c0       	rjmp	.+54     	; 0x46 <__bad_interrupt>
+  10:	1a c0       	rjmp	.+52     	; 0x46 <__bad_interrupt>
+  12:	19 c0       	rjmp	.+50     	; 0x46 <__bad_interrupt>
+  14:	18 c0       	rjmp	.+48     	; 0x46 <__bad_interrupt>
+  16:	17 c0       	rjmp	.+46     	; 0x46 <__bad_interrupt>
+  18:	16 c0       	rjmp	.+44     	; 0x46 <__bad_interrupt>
+  1a:	15 c0       	rjmp	.+42     	; 0x46 <__bad_interrupt>
+  1c:	14 c0       	rjmp	.+40     	; 0x46 <__bad_interrupt>
+  1e:	13 c0       	rjmp	.+38     	; 0x46 <__bad_interrupt>
+  20:	12 c0       	rjmp	.+36     	; 0x46 <__bad_interrupt>
+  22:	11 c0       	rjmp	.+34     	; 0x46 <__bad_interrupt>
+  24:	10 c0       	rjmp	.+32     	; 0x46 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_clear_bss>:
+  32:	20 e0       	ldi	r18, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	01 c0       	rjmp	.+2      	; 0x3c <.do_clear_bss_start>
+
+0000003a <.do_clear_bss_loop>:
+  3a:	1d 92       	st	X+, r1
+
+0000003c <.do_clear_bss_start>:
+  3c:	a2 36       	cpi	r26, 0x62	; 98
+  3e:	b2 07       	cpc	r27, r18
+  40:	e1 f7       	brne	.-8      	; 0x3a <.do_clear_bss_loop>
+  42:	2c d0       	rcall	.+88     	; 0x9c <main>
+  44:	83 c0       	rjmp	.+262    	; 0x14c <_exit>
+
+00000046 <__bad_interrupt>:
+  46:	dc cf       	rjmp	.-72     	; 0x0 <__vectors>
+
+00000048 <Delay10xMiliseconds>:
+#include <avr/wdt.h>
+
+//*******************************************************************************
+void Delay10xMiliseconds(unsigned int valueOfX)		//Make a 10*x ms delay
+{
+	for(unsigned int i = 0; i < valueOfX; i++)
+  48:	00 97       	sbiw	r24, 0x00	; 0
+  4a:	71 f0       	breq	.+28     	; 0x68 <Delay10xMiliseconds+0x20>
+  4c:	20 e0       	ldi	r18, 0x00	; 0
+  4e:	30 e0       	ldi	r19, 0x00	; 0
+	{
+		wdt_reset();
+  50:	a8 95       	wdr
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  52:	ef e1       	ldi	r30, 0x1F	; 31
+  54:	fe e4       	ldi	r31, 0x4E	; 78
+  56:	31 97       	sbiw	r30, 0x01	; 1
+  58:	f1 f7       	brne	.-4      	; 0x56 <Delay10xMiliseconds+0xe>
+  5a:	00 c0       	rjmp	.+0      	; 0x5c <Delay10xMiliseconds+0x14>
+  5c:	00 00       	nop
+#include <avr/wdt.h>
+
+//*******************************************************************************
+void Delay10xMiliseconds(unsigned int valueOfX)		//Make a 10*x ms delay
+{
+	for(unsigned int i = 0; i < valueOfX; i++)
+  5e:	2f 5f       	subi	r18, 0xFF	; 255
+  60:	3f 4f       	sbci	r19, 0xFF	; 255
+  62:	28 17       	cp	r18, r24
+  64:	39 07       	cpc	r19, r25
+  66:	a1 f7       	brne	.-24     	; 0x50 <Delay10xMiliseconds+0x8>
+  68:	08 95       	ret
+
+0000006a <Init_uC_Ports>:
+}
+
+void Init_uC_Ports(void)
+{
+	//-----------------------------------------
+	DDRB |= (1 << PB0) | (1 << PB1);	
+  6a:	87 b3       	in	r24, 0x17	; 23
+  6c:	83 60       	ori	r24, 0x03	; 3
+  6e:	87 bb       	out	0x17, r24	; 23
+	DDRB &= ~(1 << PB3);
+  70:	bb 98       	cbi	0x17, 3	; 23
+	DDRB &= ~(1 << PB4);
+  72:	bc 98       	cbi	0x17, 4	; 23
+	
+	PORTB &= ~(1 << PB0);
+  74:	c0 98       	cbi	0x18, 0	; 24
+	PORTB |= (1 << PB3) | (1 << PB4);
+  76:	88 b3       	in	r24, 0x18	; 24
+  78:	88 61       	ori	r24, 0x18	; 24
+  7a:	88 bb       	out	0x18, r24	; 24
+	//-----------------------------------------
+	DDRC &= ~(1 << PC1);
+  7c:	a1 98       	cbi	0x14, 1	; 20
+	DDRC &= ~(1 << PC2);
+  7e:	a2 98       	cbi	0x14, 2	; 20
+	DDRC &= ~(1 << PC3);
+  80:	a3 98       	cbi	0x14, 3	; 20
+	DDRC &= ~(1 << PC4);
+  82:	a4 98       	cbi	0x14, 4	; 20
+	DDRC &= ~(1 << PC5);
+  84:	a5 98       	cbi	0x14, 5	; 20
+
+	PORTC |= (1 << PC1) | (1 << PC2) | (1 << PC3) | (1 << PC4) | (1 << PC5);
+  86:	85 b3       	in	r24, 0x15	; 21
+  88:	8e 63       	ori	r24, 0x3E	; 62
+  8a:	85 bb       	out	0x15, r24	; 21
+	//-----------------------------------------
+	DDRD &= ~(1 << PD5);
+  8c:	8d 98       	cbi	0x11, 5	; 17
+	DDRD &= ~(1 << PD6);	
+  8e:	8e 98       	cbi	0x11, 6	; 17
+	DDRD |= (1 << PD7);
+  90:	8f 9a       	sbi	0x11, 7	; 17
+	
+	PORTD |= (1 << PD5) | (1 << PD6);
+  92:	82 b3       	in	r24, 0x12	; 18
+  94:	80 66       	ori	r24, 0x60	; 96
+  96:	82 bb       	out	0x12, r24	; 18
+	PORTD &= ~(1 << PD7);
+  98:	97 98       	cbi	0x12, 7	; 18
+  9a:	08 95       	ret
+
+0000009c <main>:
+
+#define dutyCycle OCR1A 
+
+int main(void)
+{
+	Delay10xMiliseconds(STARTUP_DELAY); //5 Seconds	
+  9c:	84 ef       	ldi	r24, 0xF4	; 244
+  9e:	91 e0       	ldi	r25, 0x01	; 1
+  a0:	d3 df       	rcall	.-90     	; 0x48 <Delay10xMiliseconds>
+	Init_uC_Ports();
+  a2:	e3 df       	rcall	.-58     	; 0x6a <Init_uC_Ports>
+	wdt_enable(WDTO_2S);
+  a4:	2f e0       	ldi	r18, 0x0F	; 15
+  a6:	88 e1       	ldi	r24, 0x18	; 24
+  a8:	90 e0       	ldi	r25, 0x00	; 0
+  aa:	0f b6       	in	r0, 0x3f	; 63
+  ac:	f8 94       	cli
+  ae:	a8 95       	wdr
+  b0:	81 bd       	out	0x21, r24	; 33
+  b2:	0f be       	out	0x3f, r0	; 63
+  b4:	21 bd       	out	0x21, r18	; 33
+	
+	
+	while(1)
+    {
+		//-----------------------------------------
+		HEART_BIT;
+  b6:	c1 9a       	sbi	0x18, 1	; 24
+  b8:	83 e0       	ldi	r24, 0x03	; 3
+  ba:	90 e0       	ldi	r25, 0x00	; 0
+  bc:	c5 df       	rcall	.-118    	; 0x48 <Delay10xMiliseconds>
+  be:	c1 98       	cbi	0x18, 1	; 24
+  c0:	87 e2       	ldi	r24, 0x27	; 39
+  c2:	91 e0       	ldi	r25, 0x01	; 1
+  c4:	c1 df       	rcall	.-126    	; 0x48 <Delay10xMiliseconds>
+		//-----------------------------------------
+				
+		//-----------------------------------------
+		if(ROOF_TANK_EMPTY && RESRV_TANK_NOT_EMPTY) 
+  c6:	9a 99       	sbic	0x13, 2	; 19
+  c8:	04 c0       	rjmp	.+8      	; 0xd2 <main+0x36>
+  ca:	b3 99       	sbic	0x16, 3	; 22
+  cc:	02 c0       	rjmp	.+4      	; 0xd2 <main+0x36>
+			UP_MOT_ON;
+  ce:	97 9a       	sbi	0x12, 7	; 18
+  d0:	01 c0       	rjmp	.+2      	; 0xd4 <main+0x38>
+		else 
+			UP_MOT_OFF;
+  d2:	97 98       	cbi	0x12, 7	; 18
+		//-----------------------------------------
+		
+		//-----------------------------------------
+		if(RESRV_TANK_FULL)
+  d4:	9b 99       	sbic	0x13, 3	; 19
+  d6:	06 c0       	rjmp	.+12     	; 0xe4 <main+0x48>
+		{
+			WASA_MOT_OFF;
+  d8:	c0 98       	cbi	0x18, 0	; 24
+			wasaMotOnCounter = 0;
+  da:	10 92 61 00 	sts	0x0061, r1
+  de:	10 92 60 00 	sts	0x0060, r1
+  e2:	2a c0       	rjmp	.+84     	; 0x138 <main+0x9c>
+		}
+		else if(RESRV_TANK_EMPTY && WASA_WTR_AVAILABLE)
+  e4:	9c 99       	sbic	0x13, 4	; 19
+  e6:	08 c0       	rjmp	.+16     	; 0xf8 <main+0x5c>
+  e8:	9d 99       	sbic	0x13, 5	; 19
+  ea:	06 c0       	rjmp	.+12     	; 0xf8 <main+0x5c>
+		{
+			WASA_MOT_ON;
+  ec:	c0 9a       	sbi	0x18, 0	; 24
+			wasaMotOnCounter = 0;
+  ee:	10 92 61 00 	sts	0x0061, r1
+  f2:	10 92 60 00 	sts	0x0060, r1
+  f6:	20 c0       	rjmp	.+64     	; 0x138 <main+0x9c>
+		}
+		else if(RESRV_TANK_EMPTY && WASA_WTR_NOT_AVAILABLE && (wasaMotOnCounter < 5))
+  f8:	9c 99       	sbic	0x13, 4	; 19
+  fa:	09 c0       	rjmp	.+18     	; 0x10e <main+0x72>
+  fc:	9d 9b       	sbis	0x13, 5	; 19
+  fe:	07 c0       	rjmp	.+14     	; 0x10e <main+0x72>
+ 100:	80 91 60 00 	lds	r24, 0x0060
+ 104:	90 91 61 00 	lds	r25, 0x0061
+ 108:	05 97       	sbiw	r24, 0x05	; 5
+ 10a:	08 f4       	brcc	.+2      	; 0x10e <main+0x72>
+		{
+			WASA_MOT_ON;
+ 10c:	c0 9a       	sbi	0x18, 0	; 24
+		}
+		
+		wasaMotOnCounter++; //Increment/3Sec
+ 10e:	80 91 60 00 	lds	r24, 0x0060
+ 112:	90 91 61 00 	lds	r25, 0x0061
+ 116:	01 96       	adiw	r24, 0x01	; 1
+ 118:	90 93 61 00 	sts	0x0061, r25
+ 11c:	80 93 60 00 	sts	0x0060, r24
+		
+		if(wasaMotOnCounter > 19)
+ 120:	84 31       	cpi	r24, 0x14	; 20
+ 122:	91 05       	cpc	r25, r1
+ 124:	28 f0       	brcs	.+10     	; 0x130 <main+0x94>
+		{
+			wasaMotOnCounter = 0;
+ 126:	10 92 61 00 	sts	0x0061, r1
+ 12a:	10 92 60 00 	sts	0x0060, r1
+ 12e:	c3 cf       	rjmp	.-122    	; 0xb6 <main+0x1a>
+		}		
+		else if(wasaMotOnCounter > 4)
+ 130:	05 97       	sbiw	r24, 0x05	; 5
+ 132:	08 f2       	brcs	.-126    	; 0xb6 <main+0x1a>
+		{
+			WASA_MOT_OFF;
+ 134:	c0 98       	cbi	0x18, 0	; 24
+ 136:	bf cf       	rjmp	.-130    	; 0xb6 <main+0x1a>
+		else if(RESRV_TANK_EMPTY && WASA_WTR_NOT_AVAILABLE && (wasaMotOnCounter < 5))
+		{
+			WASA_MOT_ON;
+		}
+		
+		wasaMotOnCounter++; //Increment/3Sec
+ 138:	80 91 60 00 	lds	r24, 0x0060
+ 13c:	90 91 61 00 	lds	r25, 0x0061
+ 140:	01 96       	adiw	r24, 0x01	; 1
+ 142:	90 93 61 00 	sts	0x0061, r25
+ 146:	80 93 60 00 	sts	0x0060, r24
+ 14a:	b5 cf       	rjmp	.-150    	; 0xb6 <main+0x1a>
+
+0000014c <_exit>:
+ 14c:	f8 94       	cli
+
+0000014e <__stop_program>:
+ 14e:	ff cf       	rjmp	.-2      	; 0x14e <__stop_program>

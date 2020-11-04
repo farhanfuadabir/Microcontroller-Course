@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Single_pin_EEE", "Single_pin_EEE\Single_pin_EEE.cproj", "{BBC61591-C378-4E11-90CD-05180166608E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBC61591-C378-4E11-90CD-05180166608E}.Debug|AVR.ActiveCfg = Debug|AVR
+		{BBC61591-C378-4E11-90CD-05180166608E}.Debug|AVR.Build.0 = Debug|AVR
+		{BBC61591-C378-4E11-90CD-05180166608E}.Release|AVR.ActiveCfg = Release|AVR
+		{BBC61591-C378-4E11-90CD-05180166608E}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

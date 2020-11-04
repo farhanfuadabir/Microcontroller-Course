@@ -1,0 +1,307 @@
+
+USART with Polling.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000132  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000042  00800060  00000132  000001c6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  008000a2  008000a2  00000208  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000208  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000068  00000000  00000000  00000238  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000004db  00000000  00000000  000002a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000029c  00000000  00000000  0000077b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000028c  00000000  00000000  00000a17  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000c0  00000000  00000000  00000ca4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    0000025c  00000000  00000000  00000d64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000002d0  00000000  00000000  00000fc0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000060  00000000  00000000  00001290  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	21 c0       	rjmp	.+66     	; 0x44 <__ctors_end>
+   2:	3b c0       	rjmp	.+118    	; 0x7a <__bad_interrupt>
+   4:	3a c0       	rjmp	.+116    	; 0x7a <__bad_interrupt>
+   6:	39 c0       	rjmp	.+114    	; 0x7a <__bad_interrupt>
+   8:	38 c0       	rjmp	.+112    	; 0x7a <__bad_interrupt>
+   a:	37 c0       	rjmp	.+110    	; 0x7a <__bad_interrupt>
+   c:	36 c0       	rjmp	.+108    	; 0x7a <__bad_interrupt>
+   e:	35 c0       	rjmp	.+106    	; 0x7a <__bad_interrupt>
+  10:	34 c0       	rjmp	.+104    	; 0x7a <__bad_interrupt>
+  12:	33 c0       	rjmp	.+102    	; 0x7a <__bad_interrupt>
+  14:	32 c0       	rjmp	.+100    	; 0x7a <__bad_interrupt>
+  16:	31 c0       	rjmp	.+98     	; 0x7a <__bad_interrupt>
+  18:	30 c0       	rjmp	.+96     	; 0x7a <__bad_interrupt>
+  1a:	2f c0       	rjmp	.+94     	; 0x7a <__bad_interrupt>
+  1c:	2e c0       	rjmp	.+92     	; 0x7a <__bad_interrupt>
+  1e:	2d c0       	rjmp	.+90     	; 0x7a <__bad_interrupt>
+  20:	2c c0       	rjmp	.+88     	; 0x7a <__bad_interrupt>
+  22:	2b c0       	rjmp	.+86     	; 0x7a <__bad_interrupt>
+  24:	2a c0       	rjmp	.+84     	; 0x7a <__bad_interrupt>
+
+00000026 <__trampolines_end>:
+  26:	54 68       	ori	r21, 0x84	; 132
+  28:	69 73       	andi	r22, 0x39	; 57
+  2a:	20 73       	andi	r18, 0x30	; 48
+  2c:	74 72       	andi	r23, 0x24	; 36
+  2e:	69 6e       	ori	r22, 0xE9	; 233
+  30:	67 20       	and	r6, r7
+  32:	69 73       	andi	r22, 0x39	; 57
+  34:	20 69       	ori	r18, 0x90	; 144
+  36:	6e 20       	and	r6, r14
+  38:	46 4c       	sbci	r20, 0xC6	; 198
+  3a:	41 53       	subi	r20, 0x31	; 49
+  3c:	48 20       	and	r4, r8
+  3e:	61 72       	andi	r22, 0x21	; 33
+  40:	65 61       	ori	r22, 0x15	; 21
+	...
+
+00000044 <__ctors_end>:
+  44:	11 24       	eor	r1, r1
+  46:	1f be       	out	0x3f, r1	; 63
+  48:	cf e5       	ldi	r28, 0x5F	; 95
+  4a:	d4 e0       	ldi	r29, 0x04	; 4
+  4c:	de bf       	out	0x3e, r29	; 62
+  4e:	cd bf       	out	0x3d, r28	; 61
+
+00000050 <__do_copy_data>:
+  50:	10 e0       	ldi	r17, 0x00	; 0
+  52:	a0 e6       	ldi	r26, 0x60	; 96
+  54:	b0 e0       	ldi	r27, 0x00	; 0
+  56:	e2 e3       	ldi	r30, 0x32	; 50
+  58:	f1 e0       	ldi	r31, 0x01	; 1
+  5a:	02 c0       	rjmp	.+4      	; 0x60 <__do_copy_data+0x10>
+  5c:	05 90       	lpm	r0, Z+
+  5e:	0d 92       	st	X+, r0
+  60:	a2 3a       	cpi	r26, 0xA2	; 162
+  62:	b1 07       	cpc	r27, r17
+  64:	d9 f7       	brne	.-10     	; 0x5c <__do_copy_data+0xc>
+
+00000066 <__do_clear_bss>:
+  66:	20 e0       	ldi	r18, 0x00	; 0
+  68:	a2 ea       	ldi	r26, 0xA2	; 162
+  6a:	b0 e0       	ldi	r27, 0x00	; 0
+  6c:	01 c0       	rjmp	.+2      	; 0x70 <.do_clear_bss_start>
+
+0000006e <.do_clear_bss_loop>:
+  6e:	1d 92       	st	X+, r1
+
+00000070 <.do_clear_bss_start>:
+  70:	a3 3a       	cpi	r26, 0xA3	; 163
+  72:	b2 07       	cpc	r27, r18
+  74:	e1 f7       	brne	.-8      	; 0x6e <.do_clear_bss_loop>
+  76:	02 d0       	rcall	.+4      	; 0x7c <main>
+  78:	5a c0       	rjmp	.+180    	; 0x12e <_exit>
+
+0000007a <__bad_interrupt>:
+  7a:	c2 cf       	rjmp	.-124    	; 0x0 <__vectors>
+
+0000007c <main>:
+
+char data;
+
+int main(void)
+{
+	USART_Init();
+  7c:	27 d0       	rcall	.+78     	; 0xcc <USART_Init>
+	
+	transmitString("===== USART Library with PULLING =====");
+  7e:	80 e6       	ldi	r24, 0x60	; 96
+  80:	90 e0       	ldi	r25, 0x00	; 0
+  82:	47 d0       	rcall	.+142    	; 0x112 <transmitString>
+	TX_NEWLINE;
+  84:	8d e0       	ldi	r24, 0x0D	; 13
+  86:	2e d0       	rcall	.+92     	; 0xe4 <transmitByte>
+  88:	8a e0       	ldi	r24, 0x0A	; 10
+  8a:	2c d0       	rcall	.+88     	; 0xe4 <transmitByte>
+	TX_NEWLINE;
+  8c:	8d e0       	ldi	r24, 0x0D	; 13
+  8e:	2a d0       	rcall	.+84     	; 0xe4 <transmitByte>
+  90:	8a e0       	ldi	r24, 0x0A	; 10
+  92:	28 d0       	rcall	.+80     	; 0xe4 <transmitByte>
+	transmitString_P(PSTR("This string is in FLASH area"));
+  94:	86 e2       	ldi	r24, 0x26	; 38
+  96:	90 e0       	ldi	r25, 0x00	; 0
+  98:	29 d0       	rcall	.+82     	; 0xec <transmitString_P>
+	TX_NEWLINE;
+  9a:	8d e0       	ldi	r24, 0x0D	; 13
+  9c:	23 d0       	rcall	.+70     	; 0xe4 <transmitByte>
+  9e:	8a e0       	ldi	r24, 0x0A	; 10
+  a0:	21 d0       	rcall	.+66     	; 0xe4 <transmitByte>
+	transmitString("This string is in RAM area");
+  a2:	87 e8       	ldi	r24, 0x87	; 135
+  a4:	90 e0       	ldi	r25, 0x00	; 0
+  a6:	35 d0       	rcall	.+106    	; 0x112 <transmitString>
+	TX_NEWLINE;
+  a8:	8d e0       	ldi	r24, 0x0D	; 13
+  aa:	1c d0       	rcall	.+56     	; 0xe4 <transmitByte>
+  ac:	8a e0       	ldi	r24, 0x0A	; 10
+  ae:	1a d0       	rcall	.+52     	; 0xe4 <transmitByte>
+	
+	while(1)
+	{
+		data = receiveByte();
+  b0:	15 d0       	rcall	.+42     	; 0xdc <receiveByte>
+  b2:	80 93 a2 00 	sts	0x00A2, r24
+		transmitByte(data);
+  b6:	16 d0       	rcall	.+44     	; 0xe4 <transmitByte>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  b8:	2f ef       	ldi	r18, 0xFF	; 255
+  ba:	81 ee       	ldi	r24, 0xE1	; 225
+  bc:	94 e0       	ldi	r25, 0x04	; 4
+  be:	21 50       	subi	r18, 0x01	; 1
+  c0:	80 40       	sbci	r24, 0x00	; 0
+  c2:	90 40       	sbci	r25, 0x00	; 0
+  c4:	e1 f7       	brne	.-8      	; 0xbe <main+0x42>
+  c6:	00 c0       	rjmp	.+0      	; 0xc8 <main+0x4c>
+  c8:	00 00       	nop
+  ca:	f2 cf       	rjmp	.-28     	; 0xb0 <main+0x34>
+
+000000cc <USART_Init>:
+//************************************************
+//        Function to initialize USART
+//************************************************
+void USART_Init()
+{
+	UCSRB = (1 << RXEN) | (1 << TXEN );						//Turn on the transmission and reception circuitry
+  cc:	88 e1       	ldi	r24, 0x18	; 24
+  ce:	8a b9       	out	0x0a, r24	; 10
+	UCSRC = (1 << URSEL) | (1 << UCSZ1) | (1 << UCSZ0 );	// Use 8- bit character sizes
+  d0:	86 e8       	ldi	r24, 0x86	; 134
+  d2:	80 bd       	out	0x20, r24	; 32
+	
+	UBRRH = (BAUD_PRESCALE >> 8);							//Load upper 8- bits of the baud rate value into the high byte of the UBRR register
+  d4:	10 bc       	out	0x20, r1	; 32
+	UBRRL = BAUD_PRESCALE;									//Load lower 8 - bits of the baud rate value into the low byte of the UBRR register	
+  d6:	83 e3       	ldi	r24, 0x33	; 51
+  d8:	89 b9       	out	0x09, r24	; 9
+  da:	08 95       	ret
+
+000000dc <receiveByte>:
+//************************************************
+unsigned char receiveByte(void)
+{
+	char data;
+	
+	while((UCSRA & (1 << RXC)) == 0); //Do nothing until data have been received and is ready to be read from UDR
+  dc:	5f 9b       	sbis	0x0b, 7	; 11
+  de:	fe cf       	rjmp	.-4      	; 0xdc <receiveByte>
+	
+	data = UDR;
+  e0:	8c b1       	in	r24, 0x0c	; 12
+	
+	return(data);
+}
+  e2:	08 95       	ret
+
+000000e4 <transmitByte>:
+//***************************************************
+//       Function to transmit a single byte
+//***************************************************
+void transmitByte(unsigned char data)
+{
+	while((UCSRA & (1 << UDRE)) == 0); //Do nothing until UDR is ready for more data to be written to it
+  e4:	5d 9b       	sbis	0x0b, 5	; 11
+  e6:	fe cf       	rjmp	.-4      	; 0xe4 <transmitByte>
+	
+	UDR = data;
+  e8:	8c b9       	out	0x0c, r24	; 12
+  ea:	08 95       	ret
+
+000000ec <transmitString_P>:
+
+//***************************************************
+//     Function to transmit a string in Flash
+//***************************************************
+void transmitString_P(const char* string)
+{
+  ec:	cf 93       	push	r28
+  ee:	df 93       	push	r29
+  f0:	ec 01       	movw	r28, r24
+	while(pgm_read_byte( & (*string)))
+  f2:	fe 01       	movw	r30, r28
+  f4:	24 91       	lpm	r18, Z
+  f6:	22 23       	and	r18, r18
+  f8:	49 f0       	breq	.+18     	; 0x10c <transmitString_P+0x20>
+	{
+		transmitByte(pgm_read_byte(&(*string++)));
+  fa:	21 96       	adiw	r28, 0x01	; 1
+  fc:	fc 01       	movw	r30, r24
+  fe:	84 91       	lpm	r24, Z
+ 100:	f1 df       	rcall	.-30     	; 0xe4 <transmitByte>
+//***************************************************
+//     Function to transmit a string in Flash
+//***************************************************
+void transmitString_P(const char* string)
+{
+	while(pgm_read_byte( & (*string)))
+ 102:	ce 01       	movw	r24, r28
+ 104:	fe 01       	movw	r30, r28
+ 106:	24 91       	lpm	r18, Z
+ 108:	21 11       	cpse	r18, r1
+ 10a:	f7 cf       	rjmp	.-18     	; 0xfa <transmitString_P+0xe>
+	{
+		transmitByte(pgm_read_byte(&(*string++)));
+	}
+}
+ 10c:	df 91       	pop	r29
+ 10e:	cf 91       	pop	r28
+ 110:	08 95       	ret
+
+00000112 <transmitString>:
+
+//***************************************************
+//      Function to transmit a string in RAM
+//***************************************************
+void transmitString(char* string)
+{
+ 112:	cf 93       	push	r28
+ 114:	df 93       	push	r29
+ 116:	ec 01       	movw	r28, r24
+	while(*string)
+ 118:	88 81       	ld	r24, Y
+ 11a:	88 23       	and	r24, r24
+ 11c:	29 f0       	breq	.+10     	; 0x128 <transmitString+0x16>
+ 11e:	21 96       	adiw	r28, 0x01	; 1
+	{
+		transmitByte(*string++);
+ 120:	e1 df       	rcall	.-62     	; 0xe4 <transmitByte>
+//***************************************************
+//      Function to transmit a string in RAM
+//***************************************************
+void transmitString(char* string)
+{
+	while(*string)
+ 122:	89 91       	ld	r24, Y+
+ 124:	81 11       	cpse	r24, r1
+ 126:	fc cf       	rjmp	.-8      	; 0x120 <transmitString+0xe>
+	{
+		transmitByte(*string++);
+	}
+}
+ 128:	df 91       	pop	r29
+ 12a:	cf 91       	pop	r28
+ 12c:	08 95       	ret
+
+0000012e <_exit>:
+ 12e:	f8 94       	cli
+
+00000130 <__stop_program>:
+ 130:	ff cf       	rjmp	.-2      	; 0x130 <__stop_program>
